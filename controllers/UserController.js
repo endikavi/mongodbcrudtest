@@ -19,11 +19,11 @@ exports.GetAllUsers = (req, res) => {
 
 exports.GetUser = (req, res) => {
 
-    User.find({_id: req.params._id}).exec(function (err, user) {
+    User.findById(req.params._id).exec(function (err, user) {
         
         if (err) return console.error(err);
         
-        if (users){
+        if (user){
             console.log(user);
             res.json(user);
         }else{
