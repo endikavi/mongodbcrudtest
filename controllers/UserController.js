@@ -60,7 +60,7 @@ exports.UpdateUser = (req, res) => {
   });
   User.findByIdAndUpdate(req.params._id, Update, function(err,user) {
     if (err) return handleError(err);
-    console.log('Actualizado usuario: ' + req.params._id);
+    console.log('Actualizado usuario: ' + user);
     res.json(user);
   });
 };
