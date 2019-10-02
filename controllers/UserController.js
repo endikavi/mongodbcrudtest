@@ -58,12 +58,9 @@ exports.UpdateUser = (req, res) => {
     username: req.body.username,
     email: req.body.email,
   });
-  User.updateOne({_id: req.params._id}, Update, function(err) {
+  User.findByIdAndUpdate(req.params._id, Update, function(err,user) {
     if (err) return handleError(err);
     console.log('Actualizado usuario: ' + req.params._id);
-    Object.assign(Update, {
-      _id: req.params._id
-    });
-    res.json(Update);
+    res.json(user);
   });
 };
