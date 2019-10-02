@@ -4,10 +4,10 @@ exports.GetAllUsers = (req, res) => {
   User.find({}).exec(function(err, users) {
     if (err) return console.error(err);
     if (users.length > 0) {
-      console.log(users);
+      console.log('Se ha pedido el listado de usuarios');
       res.json(users);
     } else {
-      console.log(users);
+      console.log('Sin usuarios');
       res.json([]);
     }
   });
@@ -58,9 +58,9 @@ exports.UpdateUser = (req, res) => {
     username: req.body.username,
     email: req.body.email,
   });
-  User.update({_id: req.params._id}, Update, function(err, user) {
+  User.update({_id: req.params._id}, Update, function(err) {
     if (err) return handleError(err);
     console.log('Actualizado usuario: ' + req.params._id);
-    res.json(user);
+    res.json(res.body);
   });
 };
