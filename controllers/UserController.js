@@ -35,7 +35,13 @@ exports.DeleteUser = (req, res) => {
 
 exports.AddUser = (req, res) => {
   const NewUser = new User();
-  Object.assign(NewUser, req.body);
+  Object.assign(NewUser, {
+    name: req.body.name,
+    active: req.body.active,
+    avatar: req.body.avatar,
+    username: req.body.username,
+    email: req.body.email,
+  });
   NewUser.save().then(user => {
     console.log('Añadido usuario:');
     console.log(user);
@@ -44,7 +50,14 @@ exports.AddUser = (req, res) => {
 };
 
 exports.UpdateUser = (req, res) => {
-  let Update = req.body;
+  let Update = {};
+  Object.assign(Update, {
+    name: req.body.name,
+    avatar: req.body.avatar,
+    active: req.body.active,
+    username: req.body.username,
+    email: req.body.email,
+  });
   User.update({_id: req.params._id}, Update, function(err, user) {
     if (err) return handleError(err);
     console.log('Actualizado usuario: ' + req.params._id);

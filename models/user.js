@@ -5,6 +5,7 @@ const schema = new mongoose.Schema({
   username: 'string',
   avatar: 'string',
   email: 'string',
+  active: 'boolean',
 });
 
 const User = mongoose.model('Users', schema);
